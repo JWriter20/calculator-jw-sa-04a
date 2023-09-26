@@ -3,6 +3,7 @@ import { CalculatorModel } from './calculator.model';
 import { ICalculatorModel } from '../interfaces/calculator-model.interface';
 import { NumericKeys } from '../enums/numeric-keys.enum';
 import { OperatorKeys } from '../enums/operator-keys.enum';
+import { ActionKeys } from '../enums/action-keys.enum';
 
 describe('CalculatorModel', (): void => {
 
@@ -59,15 +60,13 @@ describe('CalculatorModel', (): void => {
   });
 
   it('should solve addition equation', (): void => {
-
     calculator.pressNumericKey(NumericKeys.NINE);
     calculator.pressNumericKey(NumericKeys.EIGHT);
     calculator.pressOperatorKey(OperatorKeys.PLUS);
     calculator.pressNumericKey(NumericKeys.FIVE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
-  
     expect(displayValue).toEqual('103');
-  
   });
 
   it('should solve subtraction', (): void => {
@@ -76,6 +75,7 @@ describe('CalculatorModel', (): void => {
     calculator.pressNumericKey(NumericKeys.EIGHT);
     calculator.pressOperatorKey(OperatorKeys.MINUS);
     calculator.pressNumericKey(NumericKeys.FIVE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('93');
@@ -88,6 +88,7 @@ describe('CalculatorModel', (): void => {
     calculator.pressNumericKey(NumericKeys.ONE);
     calculator.pressOperatorKey(OperatorKeys.MULT);
     calculator.pressNumericKey(NumericKeys.FOUR);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('84');
@@ -100,6 +101,7 @@ describe('CalculatorModel', (): void => {
     calculator.pressNumericKey(NumericKeys.ZERO);
     calculator.pressOperatorKey(OperatorKeys.DIV);
     calculator.pressNumericKey(NumericKeys.FIVE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('10');
@@ -113,6 +115,7 @@ describe('CalculatorModel', (): void => {
     calculator.pressNumericKey(NumericKeys.THREE);
     calculator.pressOperatorKey(OperatorKeys.MINUS);
     calculator.pressNumericKey(NumericKeys.ONE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('4');
@@ -127,8 +130,7 @@ describe('CalculatorModel', (): void => {
     calculator.pressOperatorKey(OperatorKeys.MULT);
     calculator.pressNumericKey(NumericKeys.ONE);
     calculator.pressNumericKey(NumericKeys.THREE);
-
-    calculator.pressNumericKey(NumericKeys.FIVE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('113');
