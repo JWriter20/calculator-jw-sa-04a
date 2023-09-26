@@ -2,6 +2,7 @@
 import { CalculatorModel } from './calculator.model';
 import { ICalculatorModel } from '../interfaces/calculator-model.interface';
 import { NumericKeys } from '../enums/numeric-keys.enum';
+import { OperatorKeys } from '../enums/operator-keys.enum';
 
 describe('CalculatorModel', (): void => {
 
@@ -54,6 +55,83 @@ describe('CalculatorModel', (): void => {
     const displayValue: string = calculator.display();
   
     expect(displayValue).toEqual('98');
+  
+  });
+
+  it('should solve addition equation', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressNumericKey(NumericKeys.EIGHT);
+    calculator.pressOperatorKey(OperatorKeys.PLUS);
+    calculator.pressNumericKey(NumericKeys.FIVE);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('103');
+  
+  });
+
+  it('should solve subtraction', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressNumericKey(NumericKeys.EIGHT);
+    calculator.pressOperatorKey(OperatorKeys.MINUS);
+    calculator.pressNumericKey(NumericKeys.FIVE);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('93');
+  
+  });
+
+  it('should solve multiplication', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.TWO);
+    calculator.pressNumericKey(NumericKeys.ONE);
+    calculator.pressOperatorKey(OperatorKeys.MULT);
+    calculator.pressNumericKey(NumericKeys.FOUR);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('84');
+  
+  });
+
+  it('should solve division', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.FIVE);
+    calculator.pressNumericKey(NumericKeys.ZERO);
+    calculator.pressOperatorKey(OperatorKeys.DIV);
+    calculator.pressNumericKey(NumericKeys.FIVE);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('10');
+  
+  });
+
+  it('should solve multiple operators', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.TWO);
+    calculator.pressOperatorKey(OperatorKeys.PLUS);
+    calculator.pressNumericKey(NumericKeys.THREE);
+    calculator.pressOperatorKey(OperatorKeys.MINUS);
+    calculator.pressNumericKey(NumericKeys.ONE);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('4');
+  
+  });
+
+  it('should know order of operations', (): void => {
+
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressOperatorKey(OperatorKeys.PLUS);
+    calculator.pressNumericKey(NumericKeys.EIGHT);
+    calculator.pressOperatorKey(OperatorKeys.MULT);
+    calculator.pressNumericKey(NumericKeys.ONE);
+    calculator.pressNumericKey(NumericKeys.THREE);
+
+    calculator.pressNumericKey(NumericKeys.FIVE);
+    const displayValue: string = calculator.display();
+  
+    expect(displayValue).toEqual('113');
   
   });
 
