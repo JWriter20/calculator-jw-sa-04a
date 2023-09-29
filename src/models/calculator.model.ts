@@ -27,8 +27,12 @@ export class CalculatorModel implements ICalculatorModel {
       case ActionKeys.EQUALS: {
         this._numbers.push(+this._buffer);
         this._buffer = this.calculate(this._numbers, this._ops);
-      }
-      case ActionKeys.CLEAR: break;
+      } break;
+      case ActionKeys.CLEAR: {
+        this._buffer = '';
+        this._numbers = [];
+        this._ops = [];
+      }; break;
       case ActionKeys.DOT:  break;
     }
   }
